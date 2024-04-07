@@ -14,8 +14,7 @@ jobs:
     - run: | 
           cd java-maven-sonar-argocd-helm-k8s/spring-boot-app
           mvn -B package --file pom.xml
-    - name: Copy JAR to Docker context
-      run: cp java-maven-sonar-argocd-helm-k8s/spring-boot-app/target/spring-boot-web.jar .
+    - run: cd java-maven-sonar-argocd-helm-k8s/spring-boot-app
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
