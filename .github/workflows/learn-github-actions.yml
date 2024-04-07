@@ -16,4 +16,4 @@ jobs:
     - name: Build Container image
       run: cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t dumalbhaskar/myimages:latest . 
     - name: docker push 
-      run: docker push dumalbhaskar/myimages
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} && docker push dumalbhaskar/myimages
