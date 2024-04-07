@@ -11,3 +11,6 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         architecture: x64
+    - name: Build project with Maven
+      run: cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn -B package --file pom.xml   
+ 
