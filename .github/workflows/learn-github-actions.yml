@@ -11,7 +11,9 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build project with Maven
-      run: cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean install  
-    - name: file
-      run: ls -la
+    - run: cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn -B package --file pom.xml
+    - run: mkdir staging && cp target/*.jar staging
+    - uses: actions/upload-artifact@v4
+      with:
+         name: Package
+         path: staging
