@@ -9,6 +9,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: '11'
+        distribution: 'temurin'
         cache: maven
     - name: Build project with Maven
       run: cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean install  
