@@ -9,11 +9,15 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: '11'
-        distribution: 'temurin'
-        architecture: x64
+        cache: maven
     - name: Build project with Maven
-      run: cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn -B package --file pom.xml   
-    - name: Build Container image
-      run: cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t dumalbhaskar/myimages:latest . 
-    - name: docker push 
-      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} && docker push dumalbhaskar/myimages
+      run: cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean install  
+    - name: Build & push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: dumalbhaskar/myimages
+        tags: v1, latest
+        registry: docker.io
+        dockerfile: java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
