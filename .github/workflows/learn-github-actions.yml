@@ -19,6 +19,6 @@ jobs:
          image: dumalbhaskar/myimages
          tags: v1, latest
          registry: docker.io
-         dockerfile: Dockerfile
+         dockerfile: java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile
          username: ${{ secrets.DOCKER_USERNAME }}
          password: ${{ secrets.DOCKER_PASSWORD }}
