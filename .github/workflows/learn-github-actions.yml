@@ -18,6 +18,7 @@ jobs:
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
+        context: java-maven-sonar-argocd-helm-k8s/spring-boot-app
         image: dumabhaskar/myimages
         tags: v1
         registry: docker.io
