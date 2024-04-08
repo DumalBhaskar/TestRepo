@@ -27,7 +27,7 @@ jobs:
          GIT_REPO_NAME: "TestRepo"
          GIT_USER_NAME: "dumalbhaskar"
          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-         IMAGE_TAG: $(echo "${GITHUB_SHA}")
+         IMAGE_TAG: ${{ github.sha }}
          IMAGE_NAME: "dumalbhaskar/myimages"
          
          
