@@ -21,3 +21,16 @@ jobs:
          docker build -t dumalbhaskar/myimages:${IMAGE_TAG} . 
          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} 
          docker push dumalbhaskar/myimages:${IMAGE_TAG}
+    - name: update manifest
+      env: 
+         BUILD_NIMBER:  ${{ github.sha }}
+         GIT_REPO_NAME: "TestRepo"
+         GIT_USER_NAME: "iam-veeramalla"
+         GITHUB_TOKEN: ${{ GITHUB_TOKEN }}
+      run: |
+                    git config user.email "abhi@gmail.com"
+                    git config user.name "dumal bhaskar"
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+                    git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
