@@ -25,7 +25,7 @@ jobs:
       env: 
          BUILD_NIMBER:  ${{ github.sha }}
          GIT_REPO_NAME: "TestRepo"
-         GIT_USER_NAME: "iam-veeramalla"
+         GIT_USER_NAME: "dumalbhaskar"
          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
                   git config user.email "abhi@gmail.com"
