@@ -28,7 +28,7 @@ jobs:
          GIT_USER_NAME: "dumalbhaskar"
          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
-            cd /tmp/temp_repo
+            mkdir /tmp/temp_repo && cd /tmp/temp_repo
             git config --global user.email "dumal@gmail.com"
             git config --global user.name "Dumal Bhaskar"
             git clone https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git
