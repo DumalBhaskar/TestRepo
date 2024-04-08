@@ -27,6 +27,10 @@ jobs:
          GIT_REPO_NAME: "TestRepo"
          GIT_USER_NAME: "dumalbhaskar"
          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+         IMAGE_TAG: $(echo "${GITHUB_SHA}")
+         IMAGE_NAME: "dumalbhaskar/myimages"
+         
+         
       run: |
             mkdir /tmp/temp_repo && cd /tmp/temp_repo
             git config --global user.email "dumal@gmail.com"
@@ -34,7 +38,7 @@ jobs:
             git clone https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git
             ls -l
             cd TestRepo
-            sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+            sed -i "s/image: $IMAGE_NAME:.*/image: $IMAGE_NAME:$IMAGE_TAG/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
             git add . 
             git commit -m "update"
             git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
