@@ -28,10 +28,13 @@ jobs:
          GIT_USER_NAME: "dumalbhaskar"
          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
+            cd /tmp/temp_repo
             git config --global user.email "dumal@gmail.com"
             git config --global user.name "Dumal Bhaskar"
-            sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+            git clone https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git
+            cd java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/
+            sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yml
             git add . 
             git commit -m "update"
-             git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+            git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                   
