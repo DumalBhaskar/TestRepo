@@ -38,7 +38,7 @@ jobs:
             git clone https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git
             ls -l
             cd TestRepo
-            sed -i "s/image: $IMAGE_NAME:.*/image: $IMAGE_NAME:$IMAGE_TAG/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+            sed -i "s|image:.*|image: $IMAGE_NAME:$IMAGE_TAG|g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
             git add . 
             git commit -m "update"
             git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
