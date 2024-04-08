@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: spring-boot-app
-        image: dumalbhaskar/myimages:$(echo "${GITHUB_SHA}")
+        image: dumalbhaskar/myimages:cb88a63b441a3e776144955fd4952fdef893062a
         ports:
         - containerPort: 8080
